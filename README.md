@@ -23,8 +23,8 @@ and it's pretty much the same thing, except is using the latest version of [Webp
 and [TypeScript](https://www.typescriptlang.org) instead of plain JavaScript.
 
 
-# Learning Material
-
+### Learning Material
+---------------------
 - [Jupyter Widgets](https://ipywidgets.readthedocs.io/en/latest)
 - [TypeScript](https://www.typescriptlang.org/docs/home.html)
 - [Backbone](http://backbonejs.org)
