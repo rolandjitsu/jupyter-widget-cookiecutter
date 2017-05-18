@@ -1,0 +1,17 @@
+### https://github.com/github/gitignore
+
+
+## WS
+.idea
+
+
+## OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*

@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"sourceMap": true,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"noUnusedParameters": false,
+		"noUnusedLocals": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"lib": [
+			"es2017",
+			"dom"
+		],
+		"module": "es2015",
+		"target": "es2016",
+		"types": [
+			"node"
+		]
+	},
+	"exclude": [
+		"node_modules"
+	]
+}
