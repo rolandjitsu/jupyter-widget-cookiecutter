@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const version = require('./package.json')
     .version;
 
@@ -41,9 +42,18 @@ const loaders = [
         ]
     }
 ];
-
-
 const devtool = 'source-map';
+
+// Optimize dist package
+// https://webpack.js.org/guides/production-build
+const plugins = [
+	new webpack.optimize.UglifyJsPlugin({
+		sourceMap: devtool.indexOf('sourcemap') >= 0 || devtool.indexOf('source-map') >= 0,
+		compress: {screw_ie8: true},
+		comments: false
+	})
+];
+
 const externals = ['jupyter-js-widgets'];
 const resolve = {
     extensions: ['.ts', '.js']
@@ -60,6 +70,7 @@ module.exports = [
          * and provides the legacy "load_ipython_extension" function which is required for any notebook extension.
          */
 		resolve,
+		plugins,
         entry: './src/extension.ts',
         output: {
             filename: 'extension.js',
@@ -77,6 +88,7 @@ module.exports = [
         devtool,
         externals,
         resolve,
+		plugins,
         entry: './src/index.ts',
         output: {
             filename: 'index.js',
@@ -100,6 +112,7 @@ module.exports = [
         devtool,
         externals,
         resolve,
+		plugins,
         entry: './src/embed.ts',
         output: {
             filename: 'index.js',
