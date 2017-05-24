@@ -1,3 +1,4 @@
+// tslint:disable: no-var-requires
 /**
  * Entry point for the unpkg bundle containing custom model definitions.
  * It differs from the notebook bundle in that it does not need to define a dynamic baseURL for the static assets,
@@ -5,5 +6,5 @@
  * Export widget models and views, and the npm package version number.
  */
 module.exports = require('./example');
-module.exports['version'] = require('../package.json')
-    .version;
+module.exports.version = require('../package.json')
+	.version;

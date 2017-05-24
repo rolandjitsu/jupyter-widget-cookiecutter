@@ -1,3 +1,4 @@
+// tslint:disable: no-var-requires
 /**
  * Entry point for the notebook bundle containing custom model definitions.
  * Setup notebook base URL.
@@ -15,5 +16,5 @@ __webpack_public_path__ = `${body.getAttribute('data-base-url')}nbextensions/{{ 
 // Export widget models and views,
 // and the npm package version number.
 module.exports = require('./example');
-module.exports['version'] = require('../package.json')
-    .version;
+module.exports.version = require('../package.json')
+	.version;

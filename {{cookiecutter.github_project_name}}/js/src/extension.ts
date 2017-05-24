@@ -8,23 +8,24 @@
 declare interface Window {
 	require: {
 		config(...args: any[]): any
-	}
+	};
 }
 
 // Configure requirejs
 if (window.require) {
-    window.require.config({
-        map: {
-            '*': {
-                '{{ cookiecutter.npm_package_name }}': 'nbextensions/{{ cookiecutter.npm_package_name }}/index',
-                'jupyter-js-widgets': 'nbextensions/jupyter-js-widgets/extension'
-            }
-        }
-    });
+	window.require.config({
+		map: {
+			'*': {
+				'{{ cookiecutter.npm_package_name }}': 'nbextensions/{{ cookiecutter.npm_package_name }}/index',
+				'jupyter-js-widgets': 'nbextensions/jupyter-js-widgets/extension'
+			}
+		}
+	});
 }
 
 
 // Export the required load_ipython_extension
 module.exports = {
-    load_ipython_extension: function() {}
+	// tslint:disable-next-line: no-empty
+	load_ipython_extension() {}
 };

@@ -1,3 +1,4 @@
+// tslint:disable: max-classes-per-file
 import {DOMWidgetModel, DOMWidgetView} from 'jupyter-js-widgets';
 
 
@@ -16,18 +17,19 @@ const version = '{{ cookiecutter.npm_package_version }}';
  * only values that differ from the defaults will be specified.
  */
 
-class HelloModel extends DOMWidgetModel {
-    defaults() {
-        return Object.assign({}, super.defaults(), {
-            _model_name: 'HelloModel',
-            _view_name: 'HelloView',
-            _model_module: name,
-            _view_module: name,
-            _model_module_version: version,
-            _view_module_version: version,
+export class HelloModel extends DOMWidgetModel {
+	defaults() {
+		return {
+			...super.defaults(),
+			_model_name: 'HelloModel',
+			_view_name: 'HelloView',
+			_model_module: name,
+			_view_module: name,
+			_model_module_version: version,
+			_view_module_version: version,
 			value: 'Hello World :)'
-        });
-    }
+		};
+	}
 }
 
 
@@ -35,21 +37,15 @@ class HelloModel extends DOMWidgetModel {
  * Custom View
  * Renders the widget model.
  */
-class HelloView extends DOMWidgetView {
-    render() {
-    	// Bind model listeners
-        this.model.on('change:value', this.updateText, this);
+export class HelloView extends DOMWidgetView {
+	render() {
+		// Bind model listeners
+		this.model.on('change:value', this.updateText, this);
 		// Trigger initial model change
-        this.updateText();
-    }
+		this.updateText();
+	}
 
-    private updateText() {
-        this.el.textContent = this.model.get('value');
-    }
+	private updateText() {
+		this.el.textContent = this.model.get('value');
+	}
 }
-
-
-module.exports = {
-    HelloModel,
-    HelloView
-};

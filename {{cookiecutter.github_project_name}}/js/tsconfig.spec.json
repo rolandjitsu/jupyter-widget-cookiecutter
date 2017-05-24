@@ -12,16 +12,21 @@
 			"es2017",
 			"dom"
 		],
-		"module": "es2015",
-		"target": "es2016",
+		"module": "commonjs",
+		"target": "es5",
 		"types": [
+			"backbone",
+			"jasmine",
+			"jquery",
 			"node"
 		]
 	},
+	"include": [
+		"config/*.ts",
+		"src/**/*.ts"
+	],
 	"exclude": [
 		"node_modules",
-		"config/*.ts",
-		"src/**/*.spec.ts",
-		"karma.config.ts"
+		"dist"
 	]
 }
