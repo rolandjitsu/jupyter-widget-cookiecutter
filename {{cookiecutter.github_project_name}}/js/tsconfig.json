@@ -12,8 +12,8 @@
 			"es2017",
 			"dom"
 		],
-		"module": "es2015",
-		"target": "es2016",
+		"module": "amd",
+		"target": "es5",
 		"types": [
 			"node"
 		]

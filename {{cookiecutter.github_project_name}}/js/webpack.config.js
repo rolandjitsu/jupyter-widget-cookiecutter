@@ -3,39 +3,19 @@ const webpack = require('webpack');
 const version = require('./package.json')
     .version;
 
-
 const pckgPath = path.resolve(__dirname, '../{{ cookiecutter.python_package_name }}/static');
 const distPath = path.resolve(__dirname, './dist/');
-
-
-const babelLoader = {
-	loader: 'babel-loader',
-	options: {
-		presets: [
-			require('babel-preset-es2015'),
-			require('babel-preset-stage-0')
-		]
-	}
-};
 
 const loaders = [
     {
         test: /\.json$/,
         loader: 'json-loader'
     },
-
-	// Transpile ES6 to ES5 using babel-loader (https://github.com/babel/babel-loader).
-	{
-		test: /\.js$/,
-		exclude: /node_modules/,
-		use: babelLoader
-	},
-    // Transpile TS to ES6 using ts-loader (https://github.com/TypeStrong/ts-loader).
+    // Transpile TS to AMD using ts-loader (https://github.com/TypeStrong/ts-loader).
     {
         test: /\.ts$/,
         exclude: /node_modules/,
         use: [
-			babelLoader,
             {
                 loader: 'ts-loader'
             }
