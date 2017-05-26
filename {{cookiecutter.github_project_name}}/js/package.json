@@ -1,6 +1,6 @@
 {
-	"name": "test",
-	"version": "0.0.0",
+	"name": "{{ cookiecutter.npm_package_name }}",
+	"version": "{{ cookiecutter.npm_package_version }}",
 	"description": "{{ cookiecutter.project_short_description }}",
 	"author": "{{ cookiecutter.author_name }}",
 	"main": "src/index.js",
