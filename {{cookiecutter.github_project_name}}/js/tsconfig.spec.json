@@ -15,9 +15,7 @@
 		"module": "commonjs",
 		"target": "es5",
 		"types": [
-			"backbone",
 			"jasmine",
-			"jquery",
 			"node"
 		]
 	},
