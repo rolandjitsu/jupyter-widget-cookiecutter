@@ -1,9 +1,12 @@
 {
 	"compilerOptions": {
-		"sourceMap": true,
-		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
+		"sourceMap": true,
+		"module": "amd",
+		"moduleResolution": "node",
+		"target": "es5",
+		"importHelpers": true,
 		"noUnusedParameters": false,
 		"noUnusedLocals": true,
 		"skipLibCheck": true,
@@ -12,8 +15,6 @@
 			"es2017",
 			"dom"
 		],
-		"module": "amd",
-		"target": "es5",
 		"types": [
 			"node"
 		]
