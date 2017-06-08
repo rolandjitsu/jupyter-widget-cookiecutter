@@ -6,6 +6,10 @@ from setuptools.command.egg_info import egg_info
 from subprocess import check_call
 from distutils import log
 
+from pip.req import parse_requirements
+from pip.download import PipSession
+from optparse import Option
+
 import os
 import sys
 
@@ -114,9 +118,31 @@ class NPM(Command):
         update_package_data(self.distribution)
 
 
+def parse_reqs(reqs_file):
+    ''' Parse the project requirements. '''
+    options = Option("--workaround")
+    options.skip_requirements_regex = None
+    options.isolated_mode = True
+    install_reqs = parse_requirements(reqs_file, options=options, session=PipSession())
+    return [str(ir.req) for ir in install_reqs]
+
+
 version_ns = {}
 with open(os.path.join(here, '{{ cookiecutter.python_package_name }}', '_version.py')) as f:
     exec(f.read(), {}, version_ns)
+
+# Parse install and extra requirements from file(s)
+install_requirements = parse_reqs(os.path.join(here, "requirements.txt"))
+
+EXTRA_REQUIREMENTS_PREFIX = 'requirements_'
+extra_requirements = {}
+for file_name in os.listdir(here):
+    if not file_name.startswith(EXTRA_REQUIREMENTS_PREFIX):
+        continue
+    base_name = os.path.basename(file_name)
+    (extra, _) = os.path.splitext(base_name)
+    extra = extra[len(EXTRA_REQUIREMENTS_PREFIX):]
+    extra_requirements[extra] = parse_reqs(file_name)
 
 setup_args = {
     'name': '{{ cookiecutter.python_package_name }}',
@@ -131,9 +157,8 @@ setup_args = {
             '{{ cookiecutter.python_package_name }}/static/index.js.map'
         ])
     ],
-    'install_requires': [
-        'ipywidgets>=6.0.0',
-    ],
+    'install_requires': install_requirements,
+	'extras_require': extra_requirements,
     'packages': find_packages(),
     'zip_safe': False,
     'cmdclass': {
