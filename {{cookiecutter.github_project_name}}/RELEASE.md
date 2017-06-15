@@ -12,7 +12,7 @@ To release a new version of **{{ cookiecutter.python_package_name }}** on PyPI:
 8. `git push`
 9. `git push --tags`
 
-To release a new version of **{{ cookiecutter.npm_package_name }}** on NPM:
+To release a new version of **{{ cookiecutter.npm_package_name }}** on [NPM](https://www.npmjs.com):
 
 1. Remove `dist` and `node_modules`;
 2. `git clean -fdx`

@@ -6,7 +6,7 @@
 ### Install
 -----------
 Prerequisites:
-- [node](http://nodejs.org/)
+- [node.js](http://nodejs.org/)
 
 To install run:
 ```bash
@@ -21,8 +21,7 @@ For testing, the following tools are provided:
 - [Jasmine](https://jasmine.github.io/2.0/introduction.html)
 - [TSLint](https://github.com/palantir/tslint)
 
-**NOTE**: If you need to patch/polyfill some functionality,
-you can import it inside `config/karma-test-shim.ts` ([core-js](https://github.com/zloirock/core-js) is already loaded to provide polyfills for ES6 features).
+**NOTE**: [core-js](https://github.com/zloirock/core-js) is loaded during unit tests in order to provide polyfills for ES6 features that may not be available in the browser.
 
 And the following commands are available:
 - `npm test` - Runs unit tests on PhantomJS;

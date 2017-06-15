@@ -11,7 +11,7 @@ pip install {{ cookiecutter.python_package_name }}
 jupyter nbextension enable --py --sys-prefix {{ cookiecutter.python_package_name }}
 ```
 
-For a development installation (requires npm), use the following:
+For a development installation (requires [NPM](https://www.npmjs.com)), use the following:
 ```bash
 git clone https://github.com/{{ cookiecutter.github_organization_name }}/{{ cookiecutter.github_project_name }}.git
 cd {{ cookiecutter.github_project_name }}
