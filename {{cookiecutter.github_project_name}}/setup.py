@@ -20,7 +20,7 @@ is_repo = os.path.exists(os.path.join(here, '.git'))
 
 npm_path = os.pathsep.join([
     os.path.join(node_root, 'node_modules', '.bin'),
-                os.environ.get('PATH', os.defpath),
+    os.environ.get('PATH', os.defpath),
 ])
 
 
@@ -97,13 +97,13 @@ class NPM(Command):
     def run(self):
         has_npm = self.has_npm()
         if not has_npm:
-            log.error("`npm` unavailable. If you're running this command using sudo, make sure `npm` is available to sudo")
+            log.error('`npm` command in unavailable. Make sure NPM is installed.')
 
         env = os.environ.copy()
         env['PATH'] = npm_path
 
         if self.should_run_npm_install():
-            log.info("Installing build dependencies with npm. This may take a while...")
+            log.info('Installing build dependencies with npm. This may take a while ...')
             check_call(['npm', 'install'], cwd=node_root, stdout=sys.stdout, stderr=sys.stderr)
             os.utime(self.node_modules, None)
 
@@ -119,8 +119,8 @@ class NPM(Command):
 
 
 def parse_reqs(reqs_file):
-    ''' Parse the project requirements. '''
-    options = Option("--workaround")
+    """Parse the project requirements."""
+    options = Option('--workaround')
     options.skip_requirements_regex = None
     options.isolated_mode = True
     install_reqs = parse_requirements(reqs_file, options=options, session=PipSession())
@@ -132,7 +132,7 @@ with open(os.path.join(here, '{{ cookiecutter.python_package_name }}', '_version
     exec(f.read(), {}, version_ns)
 
 # Parse install and extra requirements from file(s)
-install_requirements = parse_reqs(os.path.join(here, "requirements.txt"))
+install_requirements = parse_reqs(os.path.join(here, 'requirements.txt'))
 
 EXTRA_REQUIREMENTS_PREFIX = 'requirements_'
 extra_requirements = {}
@@ -158,7 +158,7 @@ setup_args = {
         ])
     ],
     'install_requires': install_requirements,
-	'extras_require': extra_requirements,
+    'extras_require': extra_requirements,
     'packages': find_packages(),
     'zip_safe': False,
     'cmdclass': {

@@ -1,2 +1,1 @@
-''' {{ cookiecutter.python_package_name }} '''
-
+"""{{ cookiecutter.python_package_name }}"""
