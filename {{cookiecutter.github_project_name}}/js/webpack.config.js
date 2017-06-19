@@ -1,7 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-const version = require('./package.json')
-    .version;
+const pckg = require('./package.json');
+const name = pckg.name;
+const version = pckg.version;
 
 const pckgPath = path.resolve(__dirname, '../{{ cookiecutter.python_package_name }}/static');
 const distPath = path.resolve(__dirname, './dist/');
@@ -31,6 +32,11 @@ const plugins = [
         sourceMap: devtool.indexOf('sourcemap') >= 0 || devtool.indexOf('source-map') >= 0,
         compress: {screw_ie8: true},
         comments: false
+    }),
+    // Replace these variables everywhere in .ts files
+    new webpack.DefinePlugin({
+        NPM_PACKAGE_NAME: JSON.stringify(name),
+        NPM_PACKAGE_VERSION: JSON.stringify(version)
     })
 ];
 
@@ -80,6 +86,7 @@ module.exports = [
     {
         /**
          * Embeddable bundle
+         * http://ipywidgets.readthedocs.io/en/latest/embedding.html
          *
          * This bundle is generally almost identical to the notebook bundle containing the custom widget views and models.
          * The only difference is in the configuration of the webpack public path for the static assets.

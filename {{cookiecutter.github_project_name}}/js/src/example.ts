@@ -2,10 +2,6 @@
 import {DOMWidgetModel, DOMWidgetView} from 'jupyter-js-widgets';
 
 
-const name = '{{ cookiecutter.npm_package_name }}';
-const version = '{{ cookiecutter.npm_package_version }}';
-
-
 /**
  * Custom Model
  *
@@ -23,10 +19,10 @@ export class HelloModel extends DOMWidgetModel {
             ...super.defaults(),
             _model_name: 'HelloModel',
             _view_name: 'HelloView',
-            _model_module: name,
-            _view_module: name,
-            _model_module_version: version,
-            _view_module_version: version,
+            _model_module: NPM_PACKAGE_NAME,
+            _view_module: NPM_PACKAGE_NAME,
+            _model_module_version: NPM_PACKAGE_VERSION,
+            _view_module_version: NPM_PACKAGE_VERSION,
             value: 'Hello World :)'
         };
     }

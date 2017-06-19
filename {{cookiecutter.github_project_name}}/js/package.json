@@ -15,11 +15,15 @@
         "ipywidgets"
     ],
     "scripts": {
-        "prepare": "webpack",
+        "clean": "rm -rf node_modules dist/",
         "lint": "tslint -c tslint.json -p ./tsconfig.spec.json -t stylish --type-check",
         "lint:fix": "npm run lint -- --fix",
+        "pretest": "npm run lint",
         "test": "karma start karma.conf.js --browsers Chrome --single-run --log-level error",
-        "test:continuous": "karma start karma.conf.js"
+        "test:continuous": "karma start karma.conf.js",
+        "prebuild": "npm run test",
+        "build": "webpack",
+        "prepare": "npm run build"
     },
     "dependencies": {
         "jupyter-js-widgets": "^2.1.4"
@@ -35,10 +39,8 @@
         "karma-chrome-launcher": "^2.1.1",
         "karma-cli": "^1.0.1",
         "karma-jasmine": "^1.1.0",
-        "karma-phantomjs-launcher": "^1.0.4",
         "karma-spec-reporter": "^0.0.31",
         "karma-typescript": "^3.0.3",
-        "phantomjs-prebuilt": "^2.1.14",
         "tslint": "^5.4.3",
         "ts-loader": "^2.1.0",
         "typescript": "^2.4.0",

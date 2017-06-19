@@ -3,7 +3,6 @@
     "rules" : {
         "arrow-parens": {"options": ["ban-single-arg-parens"]},
         "no-consecutive-blank-lines": {"options": 2},
-        "indent": {"options": ["spaces"]},
         "interface-name": false,
         "no-shadowed-variable": false,
         "max-line-length": {"options": [240]},

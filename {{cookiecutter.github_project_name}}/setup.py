@@ -128,7 +128,7 @@ def parse_reqs(reqs_file):
 
 
 version_ns = {}
-with open(os.path.join(here, '{{ cookiecutter.python_package_name }}', '_version.py')) as f:
+with open(os.path.join(here, '{{ cookiecutter.python_package_name }}', 'version.py')) as f:
     exec(f.read(), {}, version_ns)
 
 # Parse install and extra requirements from file(s)
@@ -187,7 +187,8 @@ setup_args = {
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5'
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6'
     ]
 }
 
