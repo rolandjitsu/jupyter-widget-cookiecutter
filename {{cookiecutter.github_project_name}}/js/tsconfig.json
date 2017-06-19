@@ -21,8 +21,6 @@
     },
     "exclude": [
         "node_modules",
-        "config/*.ts",
-        "src/**/*.spec.ts",
-        "karma.config.ts"
+        "src/**/*.spec.ts"
     ]
 }

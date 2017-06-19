@@ -18,8 +18,8 @@
         "prepare": "webpack",
         "lint": "tslint -c tslint.json -p ./tsconfig.spec.json -t stylish --type-check",
         "lint:fix": "npm run lint -- --fix",
-        "test": "karma start karma.config.ts --browsers Chrome --single-run --log-level error",
-        "test:continuous": "karma start karma.config.ts"
+        "test": "karma start karma.conf.js --browsers Chrome --single-run --log-level error",
+        "test:continuous": "karma start karma.conf.js"
     },
     "dependencies": {
         "jupyter-js-widgets": "^2.1.4"

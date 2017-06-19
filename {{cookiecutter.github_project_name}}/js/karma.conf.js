@@ -9,15 +9,16 @@ module.exports = function (config) {
             '**/*.ts': ['karma-typescript']
         },
         files: [
-            // Setup
-            {pattern: 'config/karma-test-shim.ts'},
+            // Shims
+			{pattern: 'node_modules/core-js/client/shim.min.js.map', included: false, served: true},
+			'node_modules/core-js/client/shim.min.js',
             // Specs
             {pattern: 'src/**/*.ts'}
         ],
         karmaTypescriptConfig: {
             tsconfig: './tsconfig.spec.json',
             bundlerOptions: {
-                entrypoints: /karma-test-shim\.ts|\.spec\.ts$/,
+                entrypoints: /\.spec\.ts$/,
                 transforms: []
             }
         },
