@@ -1,28 +1,28 @@
 {
-	"compilerOptions": {
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true,
-		"sourceMap": true,
-		"module": "amd",
-		"moduleResolution": "node",
-		"target": "es5",
-		"importHelpers": true,
-		"noUnusedParameters": false,
-		"noUnusedLocals": true,
-		"skipLibCheck": true,
-		"strict": true,
-		"lib": [
-			"es2017",
-			"dom"
-		],
-		"types": [
-			"node"
-		]
-	},
-	"exclude": [
-		"node_modules",
-		"config/*.ts",
-		"src/**/*.spec.ts",
-		"karma.config.ts"
-	]
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "module": "amd",
+        "moduleResolution": "node",
+        "target": "es5",
+        "importHelpers": true,
+        "noUnusedParameters": false,
+        "noUnusedLocals": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "lib": [
+            "es2017",
+            "dom"
+        ],
+        "types": [
+            "node"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "config/*.ts",
+        "src/**/*.spec.ts",
+        "karma.config.ts"
+    ]
 }

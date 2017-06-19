@@ -17,4 +17,4 @@ __webpack_public_path__ = `${body.getAttribute('data-base-url')}nbextensions/{{ 
 // and the npm package version number.
 module.exports = require('./example');
 module.exports.version = require('../package.json')
-	.version;
+    .version;

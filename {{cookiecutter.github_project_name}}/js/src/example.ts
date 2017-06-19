@@ -18,18 +18,18 @@ const version = '{{ cookiecutter.npm_package_version }}';
  */
 
 export class HelloModel extends DOMWidgetModel {
-	defaults() {
-		return {
-			...super.defaults(),
-			_model_name: 'HelloModel',
-			_view_name: 'HelloView',
-			_model_module: name,
-			_view_module: name,
-			_model_module_version: version,
-			_view_module_version: version,
-			value: 'Hello World :)'
-		};
-	}
+    defaults() {
+        return {
+            ...super.defaults(),
+            _model_name: 'HelloModel',
+            _view_name: 'HelloView',
+            _model_module: name,
+            _view_module: name,
+            _model_module_version: version,
+            _view_module_version: version,
+            value: 'Hello World :)'
+        };
+    }
 }
 
 
@@ -38,14 +38,14 @@ export class HelloModel extends DOMWidgetModel {
  * Renders the widget model.
  */
 export class HelloView extends DOMWidgetView {
-	render() {
-		// Bind model listeners
-		this.model.on('change:value', this.updateText, this);
-		// Trigger initial model change
-		this.updateText();
-	}
+    render() {
+        // Bind model listeners
+        this.model.on('change:value', this.updateText, this);
+        // Trigger initial model change
+        this.updateText();
+    }
 
-	private updateText() {
-		this.el.textContent = this.model.get('value');
-	}
+    private updateText() {
+        this.el.textContent = this.model.get('value');
+    }
 }

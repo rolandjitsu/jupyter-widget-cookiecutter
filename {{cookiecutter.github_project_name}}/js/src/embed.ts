@@ -7,4 +7,4 @@
  */
 module.exports = require('./example');
 module.exports.version = require('../package.json')
-	.version;
+    .version;

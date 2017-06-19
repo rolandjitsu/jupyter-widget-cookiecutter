@@ -1,47 +1,47 @@
 {
-	"name": "{{ cookiecutter.npm_package_name }}",
-	"version": "{{ cookiecutter.npm_package_version }}",
-	"description": "{{ cookiecutter.project_short_description }}",
-	"author": "{{ cookiecutter.author_name }}",
-	"main": "src/index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/{{ cookiecutter.github_organization_name }}/{{ cookiecutter.github_project_name }}.git"
-	},
-	"keywords": [
-		"jupyter",
-		"widgets",
-		"ipython",
-		"ipywidgets"
-	],
-	"scripts": {
-		"prepare": "webpack",
-		"lint": "tslint -c tslint.json -p ./tsconfig.spec.json -t stylish --type-check",
-		"lint:fix": "npm run lint -- --fix",
-		"test": "karma start karma.config.ts --browsers Chrome --single-run --log-level error",
-		"test:continuous": "karma start karma.config.ts"
-	},
-	"dependencies": {
-		"jupyter-js-widgets": "^2.1.4"
-	},
-	"devDependencies": {
-		"@types/jasmine": "^2.5.52",
-		"@types/node": "^7.0.31",
-		"core-js": "^2.4.1",
-		"jasmine": "^2.6.0",
-		"jasmine-core": "^2.6.3",
-		"json-loader": "^0.5.4",
-		"karma": "^1.7.0",
-		"karma-chrome-launcher": "^2.1.1",
-		"karma-cli": "^1.0.1",
-		"karma-jasmine": "^1.1.0",
-		"karma-phantomjs-launcher": "^1.0.4",
-		"karma-spec-reporter": "^0.0.31",
-		"karma-typescript": "^3.0.3",
-		"phantomjs-prebuilt": "^2.1.14",
-		"tslint": "^5.4.3",
-		"ts-loader": "^2.1.0",
-		"typescript": "^2.4.0",
-		"webpack": "^2.6.1"
-	}
+    "name": "{{ cookiecutter.npm_package_name }}",
+    "version": "{{ cookiecutter.npm_package_version }}",
+    "description": "{{ cookiecutter.project_short_description }}",
+    "author": "{{ cookiecutter.author_name }}",
+    "main": "src/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/{{ cookiecutter.github_organization_name }}/{{ cookiecutter.github_project_name }}.git"
+    },
+    "keywords": [
+        "jupyter",
+        "widgets",
+        "ipython",
+        "ipywidgets"
+    ],
+    "scripts": {
+        "prepare": "webpack",
+        "lint": "tslint -c tslint.json -p ./tsconfig.spec.json -t stylish --type-check",
+        "lint:fix": "npm run lint -- --fix",
+        "test": "karma start karma.config.ts --browsers Chrome --single-run --log-level error",
+        "test:continuous": "karma start karma.config.ts"
+    },
+    "dependencies": {
+        "jupyter-js-widgets": "^2.1.4"
+    },
+    "devDependencies": {
+        "@types/jasmine": "^2.5.52",
+        "@types/node": "^7.0.31",
+        "core-js": "^2.4.1",
+        "jasmine": "^2.6.0",
+        "jasmine-core": "^2.6.3",
+        "json-loader": "^0.5.4",
+        "karma": "^1.7.0",
+        "karma-chrome-launcher": "^2.1.1",
+        "karma-cli": "^1.0.1",
+        "karma-jasmine": "^1.1.0",
+        "karma-phantomjs-launcher": "^1.0.4",
+        "karma-spec-reporter": "^0.0.31",
+        "karma-typescript": "^3.0.3",
+        "phantomjs-prebuilt": "^2.1.14",
+        "tslint": "^5.4.3",
+        "ts-loader": "^2.1.0",
+        "typescript": "^2.4.0",
+        "webpack": "^2.6.1"
+    }
 }

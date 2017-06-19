@@ -1,19 +1,19 @@
 {
-	"extends": "./tsconfig.json",
-	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es5",
-		"types": [
-			"jasmine",
-			"node"
-		]
-	},
-	"include": [
-		"config/*.ts",
-		"src/**/*.ts"
-	],
-	"exclude": [
-		"node_modules",
-		"dist"
-	]
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "types": [
+            "jasmine",
+            "node"
+        ]
+    },
+    "include": [
+        "config/*.ts",
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
 }
