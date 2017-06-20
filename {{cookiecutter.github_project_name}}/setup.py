@@ -108,10 +108,6 @@ class NPM(Command):
         """Ignore this step."""
         pass
 
-    def should_run_npm_install(self):
-        """Check if node_modules already exists and return False if so."""
-        return False if os.path.exists(self.node_modules) else True
-
     def run(self):
         """Run `npm install` if npm is in the PATH and node_modules doesn't exist."""
         has_npm = is_npm_available()
@@ -121,7 +117,7 @@ class NPM(Command):
         env = os.environ.copy()
         env['PATH'] = npm_path
 
-        if self.should_run_npm_install():
+        if has_npm:
             logger.info('Installing TS build dependencies. This may take some time ...')
             check_call(['npm', 'install'], cwd=node_root, stdout=sys.stdout, stderr=sys.stderr)
             os.utime(self.node_modules, None)
