@@ -42,7 +42,7 @@
         "karma-phantomjs-launcher": "^1.0.4",
         "karma-spec-reporter": "^0.0.31",
         "karma-typescript": "^3.0.3",
-        "phatomjs-prebuilt": "^2.1.14",
+        "phantomjs-prebuilt": "^2.1.14",
         "tslint": "^5.4.3",
         "ts-loader": "^2.1.0",
         "typescript": "^2.4.0",
