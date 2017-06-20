@@ -20,8 +20,8 @@ Now start hacking.
 ### Test
 --------
 During development, use the following commands to ensure everything is still working and is in line with the coding guidelines:
-- `npm test` - Runs unit tests in Chrome;
-- `npm run test:continuous` - Continuously runs unit tests in Chrome; reruns on file change;
+- `npm test` - Runs unit tests in PhantomJS;
+- `npm run test:continuous` - Continuously runs unit tests in PhantomJS; reruns on file change;
 - `npm run lint` - Lints all `.ts` files;
 - `npm run lint:fix` - Lints and fixes errors (only works for some rules).
 
