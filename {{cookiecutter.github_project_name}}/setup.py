@@ -1,17 +1,19 @@
+"""Package setup."""
+
 from __future__ import print_function
-from setuptools import setup, find_packages, Command
-from setuptools.command.sdist import sdist
-from setuptools.command.build_py import build_py
-from setuptools.command.egg_info import egg_info
-from subprocess import check_call
-from distutils import log
 
-from pip.req import parse_requirements
-from pip.download import PipSession
-from optparse import Option
-
+import logging
 import os
 import sys
+
+from subprocess import check_call, CalledProcessError
+from pip.download import PipSession
+from pip.req import parse_requirements
+
+from setuptools import setup, find_packages, Command
+from setuptools.command.build_py import build_py
+from setuptools.command.egg_info import egg_info
+from setuptools.command.sdist import sdist
 
 
 here = os.path.dirname(os.path.abspath(__file__))
@@ -20,21 +22,31 @@ is_repo = os.path.exists(os.path.join(here, '.git'))
 
 npm_path = os.pathsep.join([
     os.path.join(node_root, 'node_modules', '.bin'),
-    os.environ.get('PATH', os.defpath),
+    os.environ.get('PATH', os.defpath)
 ])
 
 
-log.set_verbosity(log.DEBUG)
-log.info('Run setup.py')
-log.info('$PATH=%s' % os.environ['PATH'])
+# Logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+logger.addHandler(ch)
+
+
+logger.info('Run setup.py', )
+logger.info('$PATH=%s', os.environ['PATH'])
+
 
 LONG_DESCRIPTION = '{{ cookiecutter.project_short_description }}'
 
 
 def js_prerelease(command, strict=False):
-    """Decorator for building minified js/css prior to another command."""
+    """Create command decorator for building minified TS/CSS prior to another command."""
     class DecoratedCommand(command):
+        """Command decorator class."""
         def run(self):
+            """Run jsdeps command."""
             jsdeps = self.distribution.get_command_obj('jsdeps')
             if not is_repo and all(os.path.exists(t) for t in jsdeps.targets):
                 # sdist, nothing to do
@@ -46,13 +58,13 @@ def js_prerelease(command, strict=False):
             except Exception as e:
                 missing = [t for t in jsdeps.targets if not os.path.exists(t)]
                 if strict or missing:
-                    log.warn('Rebuilding js and css failed')
+                    logger.warning('Rebuilding TS and CSS failed')
                     if missing:
-                        log.error('Missing files: %s' % missing)
+                        logger.error('Missing files: %s', missing)
                     raise e
                 else:
-                    log.warn('Rebuilding js and css failed (not a problem)')
-                    log.warn(str(e))
+                    logger.warning('Rebuilding TS and CSS failed (not a problem)')
+                    logger.warning(str(e))
             command.run(self)
             update_package_data(self.distribution)
     return DecoratedCommand
@@ -60,13 +72,25 @@ def js_prerelease(command, strict=False):
 
 def update_package_data(distribution):
     """Update package_data to catch changes during setup."""
+    # TODO: Let's handle this differently
     build_py = distribution.get_command_obj('build_py')
     # distribution.package_data = find_package_data()
     # re-init build_py options which load package_data
     build_py.finalize_options()
 
 
+def is_npm_available():
+    """Check if the current path has NPM installed (we check the version)."""
+    try:
+        check_call(['npm', '--version'])
+        return True
+    except CalledProcessError:
+        return False
+
+
 class NPM(Command):
+    """Command for running npm install."""
+
     description = 'Install package.json dependencies using npm'
     user_options = []
     node_modules = os.path.join(node_root, 'node_modules')
@@ -77,33 +101,28 @@ class NPM(Command):
     ]
 
     def initialize_options(self):
+        """Ignore this step."""
         pass
 
     def finalize_options(self):
+        """Ignore this step."""
         pass
 
-    def has_npm(self):
-        try:
-            check_call(['npm', '--version'])
-            return True
-        except:
-            return False
-
     def should_run_npm_install(self):
-        package_json = os.path.join(node_root, 'package.json')
-        node_modules_exists = os.path.exists(self.node_modules)
-        return self.has_npm()
+        """Check if node_modules already exists and return False if so."""
+        return False if os.path.exists(self.node_modules) else True
 
     def run(self):
-        has_npm = self.has_npm()
+        """Run `npm install` if npm is in the PATH and node_modules doesn't exist."""
+        has_npm = is_npm_available()
         if not has_npm:
-            log.error('`npm` command in unavailable. Make sure NPM is installed.')
+            logger.error('`npm` command in unavailable. Make sure NPM is installed.')
 
         env = os.environ.copy()
         env['PATH'] = npm_path
 
         if self.should_run_npm_install():
-            log.info('Installing build dependencies with npm. This may take a while ...')
+            logger.info('Installing TS build dependencies. This may take some time ...')
             check_call(['npm', 'install'], cwd=node_root, stdout=sys.stdout, stderr=sys.stderr)
             os.utime(self.node_modules, None)
 
@@ -119,16 +138,14 @@ class NPM(Command):
 
 
 def parse_reqs(reqs_file):
-    """Parse the project requirements."""
-    options = Option('--workaround')
-    options.skip_requirements_regex = None
-    options.isolated_mode = True
-    install_reqs = parse_requirements(reqs_file, options=options, session=PipSession())
+    """Parse the project requirements from files such as requirements.txt"""
+    install_reqs = parse_requirements(reqs_file, session=PipSession())
     return [str(ir.req) for ir in install_reqs]
 
 
 version_ns = {}
 with open(os.path.join(here, '{{ cookiecutter.python_package_name }}', 'version.py')) as f:
+    # TODO: Let's handle this differently
     exec(f.read(), {}, version_ns)
 
 # Parse install and extra requirements from file(s)
