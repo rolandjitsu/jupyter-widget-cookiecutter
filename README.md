@@ -2,6 +2,9 @@
 
 > A simple jupyter widget [cookiecutter](https://github.com/audreyr/cookiecutter) template that uses [TypeScript](https://www.typescriptlang.org).
 
+# IMPORTANT NOTICE
+
+This project is no longer maintained and it's definitely out of date! Use at your own risk!
 
 ### Usage
 ---------
